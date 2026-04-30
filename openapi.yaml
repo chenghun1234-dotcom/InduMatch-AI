@@ -1,0 +1,119 @@
+openapi: 3.0.0
+info:
+  title: InduMatch AI - Industrial Parts & B2B Matching API
+  description: >
+    AI-powered visual analysis and matching engine for industrial surplus.
+    Identifies component specs, maps to HS Codes, and matches with global B2B buyers.
+  version: 1.0.0
+servers:
+  - url: https://indumatchai.eieu6789.workers.dev
+    description: Production Server
+
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Returns the current status of the API.
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              example:
+                status: "healthy"
+                version: "1.0.0"
+
+  /match-industry:
+    post:
+      summary: Match Component to Industries
+      description: Returns target industries and HS Codes based on component tags.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: ["cable", "8-pin", "PVC"]
+                location:
+                  type: string
+                  example: "South Korea"
+      responses:
+        '200':
+          description: Successful matching
+          content:
+            application/json:
+              example:
+                target_industries:
+                  - sector: "Home Appliances"
+                    relevance: "High"
+                    hs_code: "8544.42"
+                  - sector: "Automotive Harness"
+                    relevance: "Medium"
+                    hs_code: "8544.30"
+                timestamp: "2026-04-30T10:00:00Z"
+
+  /find-companies:
+    post:
+      summary: Find Potential Buyers
+      description: Returns a list of verified B2B companies looking for the component.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hs_code:
+                  type: string
+                  example: "8544.42"
+                industry:
+                  type: string
+                  example: "Automotive"
+      responses:
+        '200':
+          description: List of potential buyers
+          content:
+            application/json:
+              example:
+                potential_buyers:
+                  - company_name: "Samsung Electronics"
+                    reason: "Verified demand for AWG 18 wiring"
+                    match_score: 98
+                  - company_name: "Hyundai Mobis"
+                    reason: "High volume importer of HS 8544.42"
+                    match_score: 92
+
+  /inventory-valuation:
+    post:
+      summary: Surplus Valuation
+      description: Estimates the current market value of the surplus inventory.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_name:
+                  type: string
+                  example: "AWG 18 PVC Wire"
+                quantity:
+                  type: integer
+                  example: 500
+                unit:
+                  type: string
+                  example: "meters"
+      responses:
+        '200':
+          description: Estimated valuation results
+          content:
+            application/json:
+              example:
+                estimated_value_usd: 1250.00
+                market_trend: "Stable"
+                currency: "USD"
