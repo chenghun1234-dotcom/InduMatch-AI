@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InduMatch AI | Circular Industrial Matching</title>
+    <meta name="description" content="AI-powered matching for surplus industrial parts and components. Circular economy for the B2B sector.">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          INDUMATCH AI
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <h1 class="fade-in">Turn Surplus into <br>Industrial Opportunity.</h1>
+          <p class="fade-in" style="animation-delay: 0.1s">Analyze industrial parts with Edge AI and match them with global buyers in seconds. Zero server costs, maximum circular value.</p>
+        </section>
+
+        <section id="drop-zone" class="upload-section fade-in" style="animation-delay: 0.2s">
+          <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <h2>Analyze Component Image</h2>
+          <p>Drag and drop or click to upload a photo of your part</p>
+          <input type="file" id="file-input" hidden accept="image/*">
+        </section>
+
+        <div id="loader" class="loader">
+          <div class="spinner"></div>
+          <p>Analyzing component specs on-device...</p>
+        </div>
+
+        <section id="analysis-results" class="analysis-container">
+          <div class="preview-card">
+            <img id="image-preview" src="" alt="Component preview">
+          </div>
+          
+          <div class="results-card">
+            <span class="status-badge">AI Analysis Complete</span>
+            <h2 id="detected-name" style="margin-bottom: 0.25rem">--</h2>
+            <p id="detected-description" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem">--</p>
+            <div id="specs-tags" class="tag-list"></div>
+            
+            <div style="margin-top: 2rem">
+              <h3 style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Market Matching</h3>
+              <div id="matching-results" class="matching-grid">
+                <!-- Matches will be injected here -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2024 InduMatch AI. Powered by Wasm Edge AI & Cloudflare.</p>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
