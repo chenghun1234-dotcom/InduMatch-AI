@@ -15,7 +15,7 @@ export default {
     }
 
     // Health Check
-    if (path === '/health') {
+    if (path === '/health' || path === '/ping') {
       return new Response(JSON.stringify({ status: 'healthy', version: '1.0.0' }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
