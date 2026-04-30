@@ -54,4 +54,4 @@ This project is designed to operate at **$0 infrastructure cost**:
 - Perfect for high-margin B2B API monetization.
 
 ## 📄 License
-MIT License - Copyright (c) 2024 InduMatch AI
+MIT License - Copyright (c) 2026 InduMatch AI
